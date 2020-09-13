@@ -9,6 +9,7 @@ const tempData = {
         email : "john",
         password: "john",
         name : "Chloe",
+        birthday : "januray 3, 2010",
 
         savings: 100000,
         coins: 1234,
@@ -33,11 +34,15 @@ const tempData = {
         benefactor: [
             {
                 name: "Kai",
-                relationship: "sister"
+                relationship: "sister",
+                contactNo: "09101111111",
+                email: "kai@gmail.com"
             },
             {
                 name: "Robert",
-                relationship: "Ninong"
+                relationship: "Ninong",
+                contactNo: "09101111111",
+                email: "robert@gmail.com"
             }
         ],
         plans: [

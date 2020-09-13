@@ -56,3 +56,4 @@ export const PIGGY_DASHBOARD_VIEW_COINS                 = "PIGGY_HOME_VIEW_COINS
 export const PIGGY_DASHBOARD_VIEW_GIFT                  = "PIGGY_HOME_VIEW_GIFT"
 export const PIGGY_DASHBOARD_VIEW_PLAN                  = "PIGGY_HOME_VIEW_PLAN"
 export const PIGGY_DASHBOARD_VIEW_STORE                 = "PIGGY_HOME_VIEW_STORE"
+export const PIGGY_DASHBOARD_VIEW_PERSONINFO                 = "PIGGY_HOME_VIEW_PESONINFO"

@@ -138,6 +138,7 @@ function buildPlansView(props, plans){
   </Container>)
 }
 
+
 function buildStoresView(props, stores){
   return (
     <div>
@@ -149,6 +150,30 @@ function buildStoresView(props, stores){
   )
 }
 
+
+function buildPersonInfoView(props){
+  return (<Container>
+    <div>
+        <Typography component="p" >Name: {props.user.name}</Typography>
+        <Typography component="p" >Birthday: {props.user.birthday}</Typography>
+        <Typography component="p" >Email: {props.user.email}</Typography>
+    </div>
+    <Typography component="p" >Benefactors</Typography>
+    <Table size="small">
+        <TableBody>
+            {props.user.benefactor.map(elem=>(
+                <TableRow key={uuid()}>
+                    <TableCell align="left">{elem.name}</TableCell>
+                    <TableCell align="right">{elem.relationship}</TableCell>
+                    <TableCell align="right">{elem.contactNo}</TableCell>
+                    <TableCell align="right">{elem.email}</TableCell>
+                </TableRow>
+            ))}        
+        </TableBody>
+    </Table>
+    <Button onClick={props.goToMain}>Back</Button>
+  </Container>)
+}
 
 
 
@@ -174,6 +199,9 @@ function Dashboard(props){
   } else if(props.action_type == ACTIONS.PIGGY_DASHBOARD_VIEW_STORE){
     detailPanel = buildStoresView(props, props.user.stores)
     template = "default"
+  } else if(props.action_type == ACTIONS.PIGGY_DASHBOARD_VIEW_PERSONINFO){
+    detailPanel = buildPersonInfoView(props)
+    template = "template1"
   } else{
     detailPanel = buildDefaultControlsView(props, classes)
     template = "default"
@@ -191,7 +219,7 @@ function Dashboard(props){
             <Paper p={2} className={classes.avatar_name}>Hi {props.user.name}!</Paper>
           </Grid>
           <Grid item xs={6}>
-            <Button>
+            <Button onClick={props.gotToPersonInfo}>
               <img src={IMAGES.PROFILE} alt="Logo" className={classes.img}/>
             </Button>
           </Grid>
@@ -257,6 +285,11 @@ function mapDispatchToProps(dispatch){
 
     gotToStore: ()=>{
       const action = {type: ACTIONS.PIGGY_DASHBOARD_VIEW_STORE};
+      dispatch(action);
+    },
+
+    gotToPersonInfo: ()=>{
+      const action = {type: ACTIONS.PIGGY_DASHBOARD_VIEW_PERSONINFO};
       dispatch(action);
     }
 

@@ -2,8 +2,8 @@
 const SERVER = "localhost";
 const PORT = "5555";
 // 
-// const DOMAIN = "https://ruhxbt88zj.execute-api.us-east-2.amazonaws.com/prod";
-const DOMAIN = "http://localhost:5555/temp/prod";
+const DOMAIN = "https://ruhxbt88zj.execute-api.us-east-2.amazonaws.com/prod";
+// const DOMAIN = "http://localhost:5555/temp/prod";
 
 
 

@@ -16,7 +16,7 @@ function getInitialState(){
 }
 
 function rootReducer(state = getInitialState(), action){
-    console.log("enter reducer: "+ action.type)
+    // console.log("enter reducer: "+ action.type)
 
     //REDIRECT
     if(action.type === ACTIONTYPE.USER_INITIALIZE_ACCOUNT_DETAILS
@@ -27,8 +27,7 @@ function rootReducer(state = getInitialState(), action){
         }
 
         if(action.type === ACTIONTYPE.USER_INITIALIZE_ACCOUNT_DETAILS_RESOLVED){
-
-            if(!action.data || !action.data.status){
+            if(!action.data ){
                 data.user = null;
             }
             else if(action.data.status === STATUSTYPE.RESPOND_ERROR){
@@ -48,168 +47,8 @@ function rootReducer(state = getInitialState(), action){
             AUTHENTICATION.setAuthorization(action.authorization);
             RedirectManager.redirectToHome();
         }
-    }else if(action.type === ACTIONTYPE.VIEW_REDIRECT_PURSE ){
-        RedirectManager.redirectToPurse();
-    }else if(action.type === ACTIONTYPE.VIEW_REDIRECT_VAULT ){
-        RedirectManager.redirectToVault();
     }
     
-    
-    //PURSE
-    else if(action.type === ACTIONTYPE.USER_PURSE_ALLOCATION_ADD_RESOLVED ){
-        let res =  Object.assign({}, state)
-        if(!action.status){
-            res.user = null;
-        }
-        else if(action.status === STATUSTYPE.STATUS_SUCCESS){
-            res.user = action.data;        
-        }
-        res.action_status = action.action_status;
-        state = res;
-
-        // console.log("index: "+ JSON.stringify(res, null, 2))
-        // let res = PurseManager.addPurseAllocation(state, action.payload);
-        // if(res.action_status.purse.status === STATUSTYPE.STATUS_SUCCESS){
-        //     RewardManager.checkIfPriviledgeForRewards(res.user)
-        // }
-        // res.action_status.purse.transaction = ACTIONTYPE.USER_PURSE_ALLOCATION_ADD;
-        // state = res;
-
-    }else if(action.type === ACTIONTYPE.USER_PURSE_ALLOCATION_ADD_CASH_RESOLVED ){
-        let res =  Object.assign({}, state)
-        if(!action.status){
-            res.user = null;
-        }
-        else if(action.status === STATUSTYPE.STATUS_SUCCESS){
-            res.user = action.data;        
-        }
-        res.action_status = action.action_status;
-        state = res;
-
-        // let res = PurseManager.addCashPurseAllocation(state, action.payload);
-        // res.action_status.purse.transaction = ACTIONTYPE.USER_PURSE_ALLOCATION_ADD_CASH;
-        // state = res;
-
-    }else if(action.type === ACTIONTYPE.USER_PURSE_ALLOCATION_DELETE_RESOLVED ){
-        let res =  Object.assign({}, state)
-        if(!action.status){
-            res.user = null;
-        }
-        else if(action.status === STATUSTYPE.STATUS_SUCCESS){
-            res.user = action.data;        
-        }
-        res.action_status = action.action_status;
-        state = res;
-
-        // let res = PurseManager.deletePurseAllocation(state, action.payload);
-        // res.action_status.purse.transaction = ACTIONTYPE.USER_PURSE_ALLOCATION_DELETE;
-        // state = res;
-        
-    }else if(action.type === ACTIONTYPE.USER_PURSE_ALLOCATION_RELEASE_CASH_RESOLVED ){
-        let res =  Object.assign({}, state)
-        if(!action.status){
-            res.user = null;
-        }
-        else if(action.status === STATUSTYPE.STATUS_SUCCESS){
-            res.user = action.data;        
-        }
-        res.action_status = action.action_status;
-        state = res;
-        // let res = PurseManager.setReleasePurseAllocation(state, action.payload);
-        // res.action_status.purse.transaction = ACTIONTYPE.USER_PURSE_ALLOCATION_RELEASE_CASH;
-        // state = res;
-    }
-
-
-
-
-
-
-    //VAULT
-    else if(action.type === ACTIONTYPE.USER_VAULT_ALLOCATION_ADD_RESOLVED ){
-        let res =  Object.assign({}, state)
-        if(!action.status){
-            res.user = null;
-        }
-        else if(action.status === STATUSTYPE.STATUS_SUCCESS){
-            res.user = action.data;        
-        }
-        res.action_status = action.action_status;
-        state = res;
-
-        // let res = VaultManager.addVaultAllocation(state, action.payload);
-        // res.action_status.purse.transaction = ACTIONTYPE.USER_VAULT_ALLOCATION_ADD;
-        // state = res;
-    }else if(action.type === ACTIONTYPE.USER_VAULT_ALLOCATION_ADD_CASH_RESOLVED ){
-        let res =  Object.assign({}, state)
-        if(!action.status){
-            res.user = null;
-        }
-        else if(action.status === STATUSTYPE.STATUS_SUCCESS){
-            res.user = action.data;        
-        }
-        res.action_status = action.action_status;
-        state = res;
-        // let res = VaultManager.addCashVaultAllocation(state, action.payload);
-        // res.action_status.purse.transaction = ACTIONTYPE.USER_VAULT_ALLOCATION_ADD;
-        // state = res;
-    }
-    
-
-    //SAVINGS ACCOUNT
-    else if(action.type === ACTIONTYPE.USER_SAVINGSACCOUNT_TO_VAULT_RESOLVED ){
-        let res =  Object.assign({}, state)
-        if(!action.status){
-            res.user = null;
-        }
-        else if(action.status === STATUSTYPE.STATUS_SUCCESS){
-            res.user = action.data;        
-        }
-        res.action_status = action.action_status;
-        state = res;
-        // let res = VaultManager.transferSavingsAccountToVault(state, action.payload);
-        // res.action_status.purse.transaction = ACTIONTYPE.USER_SAVINGSACCOUNT_TO_VAULT;
-        // state = res;
-
-    }else if(action.type === ACTIONTYPE.USER_SAVINGSACCOUNT_FROM_VAULT_RESOLVED ){
-        let res =  Object.assign({}, state)
-        if(!action.status){
-            res.user = null;
-        }
-        else if(action.status === STATUSTYPE.STATUS_SUCCESS){
-            res.user = action.data;        
-        }
-        res.action_status = action.action_status;
-        state = res;
-        // let res = VaultManager.transferVaultToSavingsAccount(state, action.payload);
-        // res.action_status.purse.transaction = ACTIONTYPE.USER_SAVINGSACCOUNT_FROM_VAULT;
-        // state = res;
-    }else if(action.type === ACTIONTYPE.BANKACCOUNT_ACCOUNT_ENROLLACCOUNT_RESOLVED ){
-        let res =  Object.assign({}, state)
-        if(!action.status){
-            res.user = null;
-        }
-        else if(action.status === STATUSTYPE.STATUS_SUCCESS){
-            res.user = action.data;        
-        }
-        res.action_status = action.action_status;
-        state = res;
-    }
-    
-    else if(action.type === ACTIONTYPE.MESSAGE_RESET_DEFAULT){
-        state = Object.assign(
-            {},
-            state, 
-            {
-                action_status: {
-                    purse: {
-                        status: "",
-                        transaction: "",
-                        message: ""
-                    }
-                }
-            })    
-    }
 
     //INBOX
     else if (action.type === ACTIONTYPE.INBOX_READ_MESSAGE){
@@ -236,8 +75,6 @@ function rootReducer(state = getInitialState(), action){
     else if (action.type === ACTIONTYPE.BANKACCOUNT_READ_ACCOUTDETAILS){
         state = Object.assign({}, state, {current_accountdetails: action.payload}) 
         // console.log("read accounts: "+ JSON.stringify(state, null, 2))
-    }else if(action.type === ACTIONTYPE.BANKACCOUNT_CLOSE_ACCOUTDETAILS){
-        state = Object.assign({}, state, {current_accountdetails: null}) 
     }
 
 
@@ -245,8 +82,7 @@ function rootReducer(state = getInitialState(), action){
        
 
 
-    state = Object.assign({}, state, {countvisit: state.countvisit+1})    
-    // console.log("return reducer: "+ JSON.stringify(state, null, 2))
+    state = Object.assign({}, state, {action_type: action.type} )
     return state;
 }
 
@@ -255,3 +91,185 @@ export{
     rootReducer,
     middleware
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// }else if(action.type === ACTIONTYPE.VIEW_REDIRECT_PURSE ){
+//     RedirectManager.redirectToPurse();
+// }else if(action.type === ACTIONTYPE.VIEW_REDIRECT_VAULT ){
+//     RedirectManager.redirectToVault();
+// }
+
+
+// //PURSE
+// else if(action.type === ACTIONTYPE.USER_PURSE_ALLOCATION_ADD_RESOLVED ){
+//     let res =  Object.assign({}, state)
+//     if(!action.status){
+//         res.user = null;
+//     }
+//     else if(action.status === STATUSTYPE.STATUS_SUCCESS){
+//         res.user = action.data;        
+//     }
+//     res.action_status = action.action_status;
+//     state = res;
+
+//     // console.log("index: "+ JSON.stringify(res, null, 2))
+//     // let res = PurseManager.addPurseAllocation(state, action.payload);
+//     // if(res.action_status.purse.status === STATUSTYPE.STATUS_SUCCESS){
+//     //     RewardManager.checkIfPriviledgeForRewards(res.user)
+//     // }
+//     // res.action_status.purse.transaction = ACTIONTYPE.USER_PURSE_ALLOCATION_ADD;
+//     // state = res;
+
+// }else if(action.type === ACTIONTYPE.USER_PURSE_ALLOCATION_ADD_CASH_RESOLVED ){
+//     let res =  Object.assign({}, state)
+//     if(!action.status){
+//         res.user = null;
+//     }
+//     else if(action.status === STATUSTYPE.STATUS_SUCCESS){
+//         res.user = action.data;        
+//     }
+//     res.action_status = action.action_status;
+//     state = res;
+
+//     // let res = PurseManager.addCashPurseAllocation(state, action.payload);
+//     // res.action_status.purse.transaction = ACTIONTYPE.USER_PURSE_ALLOCATION_ADD_CASH;
+//     // state = res;
+
+// }else if(action.type === ACTIONTYPE.USER_PURSE_ALLOCATION_DELETE_RESOLVED ){
+//     let res =  Object.assign({}, state)
+//     if(!action.status){
+//         res.user = null;
+//     }
+//     else if(action.status === STATUSTYPE.STATUS_SUCCESS){
+//         res.user = action.data;        
+//     }
+//     res.action_status = action.action_status;
+//     state = res;
+
+//     // let res = PurseManager.deletePurseAllocation(state, action.payload);
+//     // res.action_status.purse.transaction = ACTIONTYPE.USER_PURSE_ALLOCATION_DELETE;
+//     // state = res;
+    
+// }else if(action.type === ACTIONTYPE.USER_PURSE_ALLOCATION_RELEASE_CASH_RESOLVED ){
+//     let res =  Object.assign({}, state)
+//     if(!action.status){
+//         res.user = null;
+//     }
+//     else if(action.status === STATUSTYPE.STATUS_SUCCESS){
+//         res.user = action.data;        
+//     }
+//     res.action_status = action.action_status;
+//     state = res;
+//     // let res = PurseManager.setReleasePurseAllocation(state, action.payload);
+//     // res.action_status.purse.transaction = ACTIONTYPE.USER_PURSE_ALLOCATION_RELEASE_CASH;
+//     // state = res;
+// }
+
+
+
+
+
+
+// //VAULT
+// else if(action.type === ACTIONTYPE.USER_VAULT_ALLOCATION_ADD_RESOLVED ){
+//     let res =  Object.assign({}, state)
+//     if(!action.status){
+//         res.user = null;
+//     }
+//     else if(action.status === STATUSTYPE.STATUS_SUCCESS){
+//         res.user = action.data;        
+//     }
+//     res.action_status = action.action_status;
+//     state = res;
+
+//     // let res = VaultManager.addVaultAllocation(state, action.payload);
+//     // res.action_status.purse.transaction = ACTIONTYPE.USER_VAULT_ALLOCATION_ADD;
+//     // state = res;
+// }else if(action.type === ACTIONTYPE.USER_VAULT_ALLOCATION_ADD_CASH_RESOLVED ){
+//     let res =  Object.assign({}, state)
+//     if(!action.status){
+//         res.user = null;
+//     }
+//     else if(action.status === STATUSTYPE.STATUS_SUCCESS){
+//         res.user = action.data;        
+//     }
+//     res.action_status = action.action_status;
+//     state = res;
+//     // let res = VaultManager.addCashVaultAllocation(state, action.payload);
+//     // res.action_status.purse.transaction = ACTIONTYPE.USER_VAULT_ALLOCATION_ADD;
+//     // state = res;
+// }
+
+
+// //SAVINGS ACCOUNT
+// else if(action.type === ACTIONTYPE.USER_SAVINGSACCOUNT_TO_VAULT_RESOLVED ){
+//     let res =  Object.assign({}, state)
+//     if(!action.status){
+//         res.user = null;
+//     }
+//     else if(action.status === STATUSTYPE.STATUS_SUCCESS){
+//         res.user = action.data;        
+//     }
+//     res.action_status = action.action_status;
+//     state = res;
+//     // let res = VaultManager.transferSavingsAccountToVault(state, action.payload);
+//     // res.action_status.purse.transaction = ACTIONTYPE.USER_SAVINGSACCOUNT_TO_VAULT;
+//     // state = res;
+
+// }else if(action.type === ACTIONTYPE.USER_SAVINGSACCOUNT_FROM_VAULT_RESOLVED ){
+//     let res =  Object.assign({}, state)
+//     if(!action.status){
+//         res.user = null;
+//     }
+//     else if(action.status === STATUSTYPE.STATUS_SUCCESS){
+//         res.user = action.data;        
+//     }
+//     res.action_status = action.action_status;
+//     state = res;
+//     // let res = VaultManager.transferVaultToSavingsAccount(state, action.payload);
+//     // res.action_status.purse.transaction = ACTIONTYPE.USER_SAVINGSACCOUNT_FROM_VAULT;
+//     // state = res;
+// }else if(action.type === ACTIONTYPE.BANKACCOUNT_ACCOUNT_ENROLLACCOUNT_RESOLVED ){
+//     let res =  Object.assign({}, state)
+//     if(!action.status){
+//         res.user = null;
+//     }
+//     else if(action.status === STATUSTYPE.STATUS_SUCCESS){
+//         res.user = action.data;        
+//     }
+//     res.action_status = action.action_status;
+//     state = res;
+// }
+
+// else if(action.type === ACTIONTYPE.MESSAGE_RESET_DEFAULT){
+//     state = Object.assign(
+//         {},
+//         state, 
+//         {
+//             action_status: {
+//                 purse: {
+//                     status: "",
+//                     transaction: "",
+//                     message: ""
+//                 }
+//             }
+//         })    
+// }
+
+// else if(action.type === ACTIONTYPE.BANKACCOUNT_CLOSE_ACCOUTDETAILS){
+//     state = Object.assign({}, state, {current_accountdetails: null}) 
+// }

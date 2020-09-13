@@ -102,7 +102,8 @@ export const initialState = {
     
     wallet_template: walletTemplate,
     current_inbox : null,
-    current_accountdetails : null
+    current_accountdetails : null,
+    action_type: null
 }
 
 

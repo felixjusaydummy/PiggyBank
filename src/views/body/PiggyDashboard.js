@@ -1,31 +1,29 @@
 import React from 'react';
+import uuid from 'react-uuid'
+import { connect } from 'react-redux';
+import NumberFormat from 'react-number-format';
+
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
-import uuid from 'react-uuid'
-import { connect } from 'react-redux';
-import { useStyles } from "../../css/piggy-dashboard";
-import * as ACTIONS from '../../js/constants/action-type';
-
 import Grid from '@material-ui/core/Grid';
-import TipsModal from '../modal/TipsModal'
+import { Paper, Table, TableBody, TableRow, TableCell, Typography, Box } from '@material-ui/core';
 
-//logs
-
-
-import { Paper, Table, TableBody, TableRow, TableCell, Typography } from '@material-ui/core';
+import { useStyles } from "../../css/piggy-dashboard";
+import { useStylesStatus } from "../../css/piggy-dashboard-coininfo";
+import * as ACTIONS from '../../js/constants/action-type';
+import { getView } from './ViewIdentifier'
 import * as IMAGES from './../../js/pictures/PiggyClass'
-import NumberFormat from 'react-number-format';
 
 
-const { forwardRef, useRef } = React;
+
 
 
 function buildDefaultControlsView(props, classes){
   return (
-    <Grid container >
+    <Grid container justify="center">
       <Grid item xs={3} >
-        <Grid container  direction="column" justify="center" alignItems="center" spacing={3}>
+        <Grid container  direction="column"  alignItems="center" spacing={3}>
           <Grid  >
             <Button onClick={props.goToCoins}>
               <img src={IMAGES.COIN} alt="Logo" className={classes.img}/>
@@ -44,7 +42,7 @@ function buildDefaultControlsView(props, classes){
         </Grid>
       </Grid>
       <Grid item xs={3} >
-        <Grid container  direction="column" justify="center" alignItems="center" spacing={3}>
+        <Grid container  direction="column"  alignItems="center" spacing={3}>
           <Grid item >
             <Button onClick={props.gotToGift}>
               <img src={IMAGES.GIFT} alt="Logo" className={classes.img}/>
@@ -67,18 +65,42 @@ function buildDefaultControlsView(props, classes){
 }
 
 
-function buildCoinsView(props){
+function buildCoinsView(props, styles){
     return (
       <div>
         <Grid item xs={6} >
-          <Typography component="p" >
-            Savings: <NumberFormat value={props.user.savings} displayType={'text'} thousandSeparator={true} />
-          </Typography>
+            {/* <View>
+              <Text style={{ transform: [{ rotate: '330deg'}], width: 14 }}>
+                Savings
+              </Text> 
+            </View> */}
+            <Grid container  direction="row" >
+              {/* <Box style={styles.container}>
+
+                <Box style={styles.triangleCorner}></Box>
+                <Box style={styles.triangleCornerLayer}></Box>
+                <Box style={styles.triangleCorner1}></Box>
+
+              </Box> */}
+
+              <Typography component="p" >
+                Savings:
+              </Typography>
+              <Typography component="p" >
+                <NumberFormat value={props.user.savings} displayType={'text'} thousandSeparator={true} />
+              </Typography>
+            </Grid>
         </Grid>
         <Grid item xs={6} >
-          <Typography component="p" >
-            Coins: <NumberFormat value={props.user.coins} displayType={'text'} thousandSeparator={true} />
-          </Typography>
+
+            <Grid container  direction="row" >
+              <Typography component="p" >
+                Coins:
+              </Typography>
+              <Typography component="p" >
+              <NumberFormat value={props.user.coins} displayType={'text'} thousandSeparator={true} />
+              </Typography>
+            </Grid>
         </Grid>
         <Grid item  >
           <Button onClick={props.goToMain}>Back</Button>
@@ -180,15 +202,12 @@ function buildPersonInfoView(props){
 
 function Dashboard(props){
   const classes = useStyles();
+  const classesStatus = useStylesStatus();
 
-  const ref = useRef();
-  const ChildModal = forwardRef(TipsModal);
-
-  
   let detailPanel = null;
   let template = "default"
   if(props.action_type == ACTIONS.PIGGY_DASHBOARD_VIEW_COINS){
-    detailPanel = buildCoinsView(props)
+    detailPanel = buildCoinsView(props, classesStatus)
     template = "default"
   } else if(props.action_type == ACTIONS.PIGGY_DASHBOARD_VIEW_GIFT){
     detailPanel = buildGiftView(props, props.user.transaction)
@@ -207,52 +226,15 @@ function Dashboard(props){
     template = "default"
   }
   
-  let mainpage = null
-  if (template == "default"){
-    mainpage = (
-      <Container component="main" maxWidth="lg">
-        <CssBaseline />
-        <ChildModal ref={ref}/>
 
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <Paper p={2} className={classes.avatar_name}>Hi {props.user.name}!</Paper>
-          </Grid>
-          <Grid item xs={6}>
-            <Button onClick={props.gotToPersonInfo}>
-              <img src={IMAGES.PROFILE} alt="Logo" className={classes.img}/>
-            </Button>
-          </Grid>
-          <Grid item xs={6}>
-            {detailPanel}
-          </Grid>
-        </Grid>
-      </Container>
-      );
-  }else if (template == "template1"){
-    mainpage = (
-      <Container component="main" maxWidth="lg">
-        <CssBaseline />
-        <ChildModal ref={ref}/>
-
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <Paper p={2} className={classes.avatar_name}>Hi {props.user.name}!</Paper>
-          </Grid>
-          <Grid item xs={3}>
-            <Button>
-              <img src={IMAGES.PROFILE} alt="Logo" className={classes.img}/>
-            </Button>
-          </Grid>
-          <Grid item xs={9}>
-            {detailPanel}
-          </Grid>
-        </Grid>
-      </Container>
-      );
-  }
+  const titlePanel = (<Paper p={2} className={classes.avatar_name}>Hi {props.user.name}!</Paper>)
+  const generalPanel = (<Button onClick={props.gotToPersonInfo}>
+    <img src={IMAGES.PROFILE} alt="Logo" className={classes.img}/>
+  </Button>)
   
-  return mainpage
+
+
+  return getView(template, titlePanel, generalPanel, detailPanel)
 }
 
 
@@ -299,3 +281,56 @@ function mapDispatchToProps(dispatch){
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
 
+
+
+
+/////
+
+
+
+// let mainpage = null
+
+
+// if (template == "default"){
+//   mainpage = (
+//     <Container component="main" maxWidth="lg">
+//       <CssBaseline />
+
+//       <Grid container spacing={3}>
+//         <Grid item xs={12}>
+//           <Paper p={2} className={classes.avatar_name}>Hi {props.user.name}!</Paper>
+//         </Grid>
+//         <Grid item xs={6}>
+//           <Button onClick={props.gotToPersonInfo}>
+//             <img src={IMAGES.PROFILE} alt="Logo" className={classes.img}/>
+//           </Button>
+//         </Grid>
+//         <Grid item xs={6}>
+//           {detailPanel}
+//         </Grid>
+//       </Grid>
+//     </Container>
+//     );
+// }else if (template == "template1"){
+//   mainpage = (
+//     <Container component="main" maxWidth="lg">
+//       <CssBaseline />
+
+//       <Grid container spacing={3}>
+//         <Grid item xs={12}>
+//           <Paper p={2} className={classes.avatar_name}>Hi {props.user.name}!</Paper>
+//         </Grid>
+//         <Grid item xs={3}>
+//           <Button>
+//             <img src={IMAGES.PROFILE} alt="Logo" className={classes.img}/>
+//           </Button>
+//         </Grid>
+//         <Grid item xs={9}>
+//           {detailPanel}
+//         </Grid>
+//       </Grid>
+//     </Container>
+//     );
+// }
+
+// return mainpage

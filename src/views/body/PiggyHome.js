@@ -32,11 +32,10 @@ import Copyright from "../foot/Copyright";
 import { useStyles } from "../../css/home";
 
 import * as URL_LIST from "../../js/constants/url-list"
-
 import * as ACTIONTYPE from "../../js/constants/action-type"
-
 import * as mainListItems from '../drawer/PiggylistItems'
 import Dashboard from './PiggyDashboard'
+import GifForm from './PiggyGIFSelectionForm'
 
 
 
@@ -159,18 +158,6 @@ function Home(props) {
               >
               <MenuOpenSharpIcon />
             </IconButton>
-
-
-            
-            {/* <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-              Dashboard
-            </Typography> */}
-
-            {/* <IconButton color="inherit"> */}
-              {/* <Badge badgeContent={4} color="secondary"> */}
-                {/* <NotificationsIcon /> */}
-              {/* </Badge> */}
-            {/* </IconButton> */}
           </Toolbar>
         </AppBar>
 
@@ -215,6 +202,7 @@ function Home(props) {
             <Grid container >
                 <Switch>
                     <Route exact path={URL_LIST.URL_USER_HOME}  component = {Dashboard} />
+                    <Route exact path={URL_LIST.URL_GIF_SELECT}  component = {GifForm} />
                 </Switch>
             </Grid>
             <Copyright />

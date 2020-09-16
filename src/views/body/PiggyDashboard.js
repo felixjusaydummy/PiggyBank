@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import { Paper, Table, TableBody, TableRow, TableCell, Typography, Box } from '@material-ui/core';
+import { Paper, Table, TableBody, TableRow, TableCell, Typography, TableHead, Avatar } from '@material-ui/core';
 
 import { useStyles } from "../../css/piggy-dashboard";
 import { useStylesStatus } from "../../css/piggy-dashboard-coininfo";
@@ -21,41 +21,42 @@ import * as IMAGES from './../../js/pictures/PiggyClass'
 
 function buildDefaultControlsView(props, classes){
   return (
-    <Grid container justify="center">
-      <Grid item xs={3} >
-        <Grid container  direction="column"  alignItems="center" spacing={3}>
-          <Grid  >
-            <Button onClick={props.goToCoins}>
-              <img src={IMAGES.COIN} alt="Logo" className={classes.img}/>
+    <Grid container justify="center" spacing={5}>
+      <Grid item sm={3} >
+        <Grid container  direction="column"  alignItems="center" spacing={1}>
+          <Grid item className={classes.controlButtons} >
+            
+            <Button onClick={props.goToCoins} >
+              <img src={IMAGES.COIN} alt="Logo" className={classes.avatar}/>
             </Button>
           </Grid>      
-          <Grid item  >
-            <Button>
-              <img src={IMAGES.GRAPH} alt="Logo" className={classes.img}/>
+          <Grid item className={classes.controlButtons} >
+            <Button >
+              <img src={IMAGES.GRAPH} alt="Logo" className={classes.avatar}/>
             </Button>
           </Grid>    
-          <Grid item >
-            <Button onClick={props.gotToStore}>
-              <img src={IMAGES.BAG} alt="Logo" className={classes.img}/>
+          <Grid item className={classes.controlButtons} >
+            <Button onClick={props.gotToStore} >
+              <img src={IMAGES.BAG} alt="Logo" className={classes.avatar}/>
             </Button>
           </Grid>      
         </Grid>
       </Grid>
-      <Grid item xs={3} >
-        <Grid container  direction="column"  alignItems="center" spacing={3}>
-          <Grid item >
-            <Button onClick={props.gotToGift}>
-              <img src={IMAGES.GIFT} alt="Logo" className={classes.img}/>
+      <Grid item sm={3} >
+        <Grid container  direction="column"  alignItems="center" spacing={1}>
+          <Grid item className={classes.controlButtons} >
+            <Button onClick={props.gotToGift}  >
+              <img src={IMAGES.GIFT} alt="Logo" className={classes.avatar}/>
             </Button>
           </Grid>      
-          <Grid item >
-            <Button>
-              <img src={IMAGES.GAMES} alt="Logo" className={classes.img}/>
+          <Grid item className={classes.controlButtons} >
+            <Button >
+              <img src={IMAGES.GAMES} alt="Logo" className={classes.avatar}/>
             </Button>
           </Grid>    
-          <Grid item onClick={props.gotToPlan} >
-            <Button>
-              <img src={IMAGES.PROGRESS} alt="Logo" className={classes.img}/>
+          <Grid item className={classes.controlButtons} >
+            <Button onClick={props.gotToPlan}>
+              <img src={IMAGES.PROGRESS} alt="Logo" className={classes.avatar}/>
             </Button>
           </Grid>      
         </Grid>
@@ -67,45 +68,29 @@ function buildDefaultControlsView(props, classes){
 
 function buildCoinsView(props, styles){
     return (
-      <div>
-        <Grid item xs={6} >
-            {/* <View>
-              <Text style={{ transform: [{ rotate: '330deg'}], width: 14 }}>
-                Savings
-              </Text> 
-            </View> */}
-            <Grid container  direction="row" >
-              {/* <Box style={styles.container}>
-
-                <Box style={styles.triangleCorner}></Box>
-                <Box style={styles.triangleCornerLayer}></Box>
-                <Box style={styles.triangleCorner1}></Box>
-
-              </Box> */}
-
-              <Typography component="p" >
-                Savings:
-              </Typography>
-              <Typography component="p" >
-                <NumberFormat value={props.user.savings} displayType={'text'} thousandSeparator={true} />
-              </Typography>
+      <Grid container direction="column" spacing={3}>
+        <Grid item m={6} >
+            <Grid container  direction="row" className={styles.textField}>
+                <svg height="70" width="80">
+                  <polygon points="0,0 0,70 70,0" className={styles.textLabel}  />
+                  <text x="-10" y="0" transform="rotate(-45 , 60 0)">Savings</text>
+                </svg>
+                <NumberFormat className={styles.textValue} value={props.user.savings} displayType={'text'} thousandSeparator={true} />
             </Grid>
         </Grid>
-        <Grid item xs={6} >
-
-            <Grid container  direction="row" >
-              <Typography component="p" >
-                Coins:
-              </Typography>
-              <Typography component="p" >
-              <NumberFormat value={props.user.coins} displayType={'text'} thousandSeparator={true} />
-              </Typography>
+        <Grid item m={6} >
+            <Grid container  direction="row" className={styles.textField}>
+                <svg height="70" width="80">
+                  <polygon points="0,0 0,70 70,0" className={styles.textLabel}  />
+                  <text x="-10" y="0" transform="rotate(-45 , 60 0)">Coins</text>
+                </svg>
+                <NumberFormat className={styles.textValue} value={props.user.coins} displayType={'text'} thousandSeparator={true} />
             </Grid>
         </Grid>
         <Grid item  >
           <Button onClick={props.goToMain}>Back</Button>
         </Grid>  
-      </div>
+      </Grid>
     )
 }
 
@@ -114,19 +99,29 @@ function buildGiftView(props, gifts){
     return (<Container>
       <Table size="small">
           <TableBody>
-              {gifts.map(elem=>(
-                  <TableRow key={uuid()}>
-                      <TableCell align="left">{elem.date}</TableCell>
-                      <TableCell align="left">{elem.name}</TableCell>
-                      <TableCell align="left">{elem.donor}</TableCell>
-                      <TableCell align="left">{elem.remark}</TableCell>
-                      <TableCell align="right">
-                        <Typography component="p" >
-                        Php <NumberFormat value={elem.amount} displayType={'text'} thousandSeparator={true} />
-                        </Typography>
-                      </TableCell>
-                  </TableRow>
-              ))}        
+            
+              <TableRow key={uuid()}>
+                  <TableCell align="left">Date</TableCell>
+                  <TableCell align="left">Name</TableCell>
+                  <TableCell align="left">Donor</TableCell>
+                  <TableCell align="left">Remarks</TableCell>
+                  <TableCell align="right">Amount</TableCell>
+              </TableRow>
+            
+            
+            {gifts.map(elem=>(
+                <TableRow key={uuid()}>
+                    <TableCell align="left">{elem.date}</TableCell>
+                    <TableCell align="left">{elem.name}</TableCell>
+                    <TableCell align="left">{elem.donor}</TableCell>
+                    <TableCell align="left">{elem.remark}</TableCell>
+                    <TableCell align="right">
+                      <Typography component="p" >
+                      Php <NumberFormat value={elem.amount} displayType={'text'} thousandSeparator={true} />
+                      </Typography>
+                    </TableCell>
+                </TableRow>
+            ))}        
           </TableBody>
       </Table>
       <Button onClick={props.goToMain}>Back</Button>
@@ -138,6 +133,13 @@ function buildPlansView(props, plans){
   return (<Container>
     <Table size="small">
         <TableBody>
+            <TableRow key={uuid()}>
+                <TableCell align="left">Name</TableCell>
+                <TableCell align="right">Amount</TableCell>
+                <TableCell align="right">Target Amt.</TableCell>
+                <TableCell align="right">Due Date</TableCell>
+            </TableRow>
+
             {plans.map(elem=>(
                 <TableRow key={uuid()}>
                     <TableCell align="left">{elem.name}</TableCell>
@@ -165,7 +167,7 @@ function buildStoresView(props, stores){
   return (
     <div>
         {stores.map(elem=>(
-            <img key={uuid()}src={elem} className="img-responsive" />
+            <img key={uuid()} src={elem} className="img-responsive" />
         ))} 
         <Button onClick={props.goToMain}>Back</Button>
     </div>
@@ -179,10 +181,23 @@ function buildPersonInfoView(props){
         <Typography component="p" >Name: {props.user.name}</Typography>
         <Typography component="p" >Birthday: {props.user.birthday}</Typography>
         <Typography component="p" >Email: {props.user.email}</Typography>
+        <Button 
+          // type="button"
+          // variant="contained"
+          color="primary"
+          onClick={props.gotToViewChangeAvatar}
+           > Change Avatar</Button>
     </div>
     <Typography component="p" >Benefactors</Typography>
     <Table size="small">
         <TableBody>
+            <TableRow key={uuid()}>
+                <TableCell align="left">Name</TableCell>
+                <TableCell align="right">Relationship</TableCell>
+                <TableCell align="right">Contact No.</TableCell>
+                <TableCell align="right">Email</TableCell>
+            </TableRow>
+
             {props.user.benefactor.map(elem=>(
                 <TableRow key={uuid()}>
                     <TableCell align="left">{elem.name}</TableCell>
@@ -193,7 +208,7 @@ function buildPersonInfoView(props){
             ))}        
         </TableBody>
     </Table>
-    <Button onClick={props.goToMain}>Back</Button>
+    <Button color="primary" onClick={props.goToMain}>Back</Button>
   </Container>)
 }
 
@@ -229,7 +244,9 @@ function Dashboard(props){
 
   const titlePanel = (<Paper p={2} className={classes.avatar_name}>Hi {props.user.name}!</Paper>)
   const generalPanel = (<Button onClick={props.gotToPersonInfo}>
-    <img src={IMAGES.PROFILE} alt="Logo" className={classes.img}/>
+    <img src={props.user.avatar} alt="Logo" className={classes.img}/>
+    
+
   </Button>)
   
 
@@ -272,6 +289,11 @@ function mapDispatchToProps(dispatch){
 
     gotToPersonInfo: ()=>{
       const action = {type: ACTIONS.PIGGY_DASHBOARD_VIEW_PERSONINFO};
+      dispatch(action);
+    },
+
+    gotToViewChangeAvatar: ()=>{
+      const action = {type: ACTIONS.VIEW_CHANGE_AVATAR};
       dispatch(action);
     }
 

@@ -41,12 +41,12 @@ export const useStyles = makeStyles(theme => ({
   },
 
   avatar: {
-    margin: theme.spacing(1),
+    // margin: theme.spacing(1),
     // backgroundColor: theme.palette.secondary.main,
-    backgroundColor: bgColors.Green,
-    flex: 1,
-    width: '150px',
-    height: '150px',
+    // backgroundColor: bgColors.Green,
+    // flex: 1,
+    width: '130px',
+    height: '100px',
     // backgroundImage: url('')
   },
 
@@ -97,4 +97,19 @@ export const useStyles = makeStyles(theme => ({
       background: bgColors.DarkGreen
     },
   },
+
+
+  controlButtons: {
+    // marginRight:40,
+    // marginLeft:40,
+    // marginTop:10,
+    // paddingTop:20,
+    // paddingBottom:20,
+    // // backgroundColor:'#68a0cf',
+    // borderRadius:10,
+    // borderWidth: 1,
+    // borderColor: '#7fad4e'
+  },
+
+  
 }));

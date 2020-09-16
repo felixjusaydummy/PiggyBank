@@ -17,3 +17,7 @@ export function redirectToLogin(){
     window.location = URLLIST.URL_USER_LOGIN;
 }
 
+export function redirectToChangeAvatar(){
+    window.location = URLLIST.URL_GIF_SELECT;
+}
+

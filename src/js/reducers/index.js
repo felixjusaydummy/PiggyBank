@@ -77,10 +77,18 @@ function rootReducer(state = getInitialState(), action){
         // console.log("read accounts: "+ JSON.stringify(state, null, 2))
     }
 
+    else if (action.type === ACTIONTYPE.PIGGY_GIPHY_SELECTION_RESOLVED){
+        state = Object.assign({}, state, {gif:  action.gif})  
+    }
+    else if (action.type === ACTIONTYPE.PIGGY_GIPHY_SELECTION_SELECTED){
+        let state1 = Object.assign({}, state) 
+        state1.user.avatar = action.payload.selected
+        state = Object.assign({}, state1) 
+        console.log("change avatar: "+ action.payload.selected)
 
-    
-       
-
+    }else if (action.type === ACTIONTYPE.VIEW_CHANGE_AVATAR){
+        RedirectManager.redirectToChangeAvatar();
+    }
 
     state = Object.assign({}, state, {action_type: action.type} )
     return state;

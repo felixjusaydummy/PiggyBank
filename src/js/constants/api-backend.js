@@ -27,3 +27,6 @@ export const TRANSFER_SAVINGSACCOUNT_FROM_VAULT             = DOMAIN + "/account
 
 
 export const BANKACCOUNT_ACCOUNTLIST_ENROLLACCOUNT          = DOMAIN + "/account/bank-account/add-account"
+
+
+export const GIPHY_SELECT_AVATAR = "https://api.giphy.com/v1/gifs/search?api_key=bivIQK9bjz4uG82j7AGbHhFzSHFyghvD"

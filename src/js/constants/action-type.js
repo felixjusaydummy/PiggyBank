@@ -4,6 +4,7 @@ export const VIEW_REDIRECT_HOME_RESOLVED                = "VIEW_REDIRECT_HOME_RE
 export const VIEW_REDIRECT_PURSE                        = "VIEW_REDIRECT_PURSE";
 export const VIEW_REDIRECT_VAULT                        = "VIEW_REDIRECT_VAULT";
 export const USER_SIGNIN                                = "USER_SIGNIN"
+export const VIEW_CHANGE_AVATAR                         = "VIEW_CHANGE_AVATAR"
 
 
 export const USER_PURSE_ALLOCATION_ADD                  = "USER_PURSE_ALLOCATION_ADD";
@@ -56,4 +57,9 @@ export const PIGGY_DASHBOARD_VIEW_COINS                 = "PIGGY_HOME_VIEW_COINS
 export const PIGGY_DASHBOARD_VIEW_GIFT                  = "PIGGY_HOME_VIEW_GIFT"
 export const PIGGY_DASHBOARD_VIEW_PLAN                  = "PIGGY_HOME_VIEW_PLAN"
 export const PIGGY_DASHBOARD_VIEW_STORE                 = "PIGGY_HOME_VIEW_STORE"
-export const PIGGY_DASHBOARD_VIEW_PERSONINFO                 = "PIGGY_HOME_VIEW_PESONINFO"
+export const PIGGY_DASHBOARD_VIEW_PERSONINFO            = "PIGGY_HOME_VIEW_PESONINFO"
+
+
+export const PIGGY_GIPHY_SELECTION_QUERY                = "PIGGY_GIPHY_SELECTION_QUERY"
+export const PIGGY_GIPHY_SELECTION_RESOLVED             = "PIGGY_GIPHY_SELECTION_RESOLVED"
+export const PIGGY_GIPHY_SELECTION_SELECTED             = "PIGGY_GIPHY_SELECTION_SELECTED"

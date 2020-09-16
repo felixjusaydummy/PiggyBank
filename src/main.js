@@ -1,10 +1,12 @@
 import React from 'react';
 import SignIn from './views/body/SignIn'
 import Home from './views/body/PiggyHome'
+import GifForm from './views/body/PiggyGIFSelectionForm'
+
 import Store  from './js/store.js'
 import { Provider } from 'react-redux'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
-import { URL_USER_HOME } from "./js/constants/url-list"
+import * as URL_LIST from "./js/constants/url-list"
 import * as AUTHENTICATESERVICE from  "./js/actions/authentication-manager"
 
 
@@ -35,8 +37,8 @@ function Main(props) {
         <BrowserRouter>
           <Switch>
             <Route exact path='/'  component = {SignIn}/>
-            {/* <Route path={URL_USER_HOME}  component = {Home}/> */}
-            <SecretRoute path={URL_USER_HOME}  component = {Home} />
+            <SecretRoute path={URL_LIST.URL_USER_HOME}  component = {Home} />
+            <SecretRoute path={URL_LIST.URL_GIF_SELECT}  component = {GifForm} />
           </Switch>
         </BrowserRouter>
       </Provider>

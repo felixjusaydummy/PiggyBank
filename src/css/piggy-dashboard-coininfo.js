@@ -1,53 +1,29 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStylesStatus = makeStyles(theme => ({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        // paddingTop: Constants.statusBarHeight,
-        paddingTop: 100,
-        backgroundColor: '#ecf0f1',
+
+    textField:{
+        textAlign:'center',
+        backgroundColor: '#d2e603'
     },
-    
-    triangleCorner: {
-        position: 'absolute',
-        top:105,
-        left:0,
-        width: 300,
-        height: 100,
-        backgroundColor: 'transparent',
-        borderStyle: 'solid',
-        borderRightWidth: 50,
-        borderTopWidth: 80,
-        borderRightColor: 'transparent',
-        borderTopColor: 'gray'
+    textLabel:{
+        fill:'#2ec1ac',
+        strokeWidth:3,
+        stroke:'#931a25',
+        fontFamily: 'Titan One',
     },
-    
-    triangleCorner1: {
-        position: 'absolute',
-        top:100,
-        left:0,
-        width: 130,
-        backgroundColor: 'transparent',
-        borderStyle: 'solid',
-        borderRightWidth: 50,
-        borderTopWidth: 90,
-        borderRightColor: 'transparent',
-        borderTopColor: 'green'
-    },
-    
-    triangleCornerLayer: {
-        position: 'absolute',
-        top:107,
-        left:0,
-        width:297,
-        height: 100,
-        backgroundColor: 'transparent',
-        borderStyle: 'solid',
-        borderRightWidth: 47,
-        borderTopWidth: 75,
-        borderRightColor: 'transparent',
-        borderTopColor: 'white'
+    textValue:{
+        fontFamily: 'Titan One',
+        // fontSize: 30
+        fontSize: '1.2rem',
+        '@media (min-width:600px)': {
+        fontSize: '1.5rem',
+        },
+        [theme.breakpoints.up('md')]: {
+        fontSize: '2.4rem',
+        }
     }
+
+
+    // style="fill:#ecf0f1;stroke:#ecf0f1;stroke-width:0"
 }));

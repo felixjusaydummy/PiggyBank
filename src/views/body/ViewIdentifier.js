@@ -19,7 +19,7 @@ const Mobile = ({ children }) => {
 //   return isNotMobile ? children : null
 // }
  
-const buildDesktopView = (template, titlePanel, generalPanel, detailPanel, ) => {
+const buildDesktopView = (template, titlePanel, generalPanel, detailPanel ) => {
     let mainpage = null
     if (template == "default"){
         mainpage = (
@@ -44,17 +44,15 @@ const buildDesktopView = (template, titlePanel, generalPanel, detailPanel, ) => 
             <Container component="main" maxWidth="lg">
                 <CssBaseline />
 
-                <Grid container spacing={3}>
+                <Grid container spacing={3} >
                     <Grid item xs={12}>
-                    {titlePanel}
+                        {titlePanel}
                     </Grid>
                     <Grid item xs={3}>
-                    <Button>
                         {generalPanel}
-                    </Button>
                     </Grid>
                     <Grid item xs={9}>
-                    {detailPanel}
+                        {detailPanel}
                     </Grid>
                 </Grid>
             </Container>
@@ -64,34 +62,34 @@ const buildDesktopView = (template, titlePanel, generalPanel, detailPanel, ) => 
 }
 
 
-const buildMobileView = (template, titlePanel, generalPanel, detailPanel, ) => {
+const buildMobileView = (template, titlePanel, generalPanel, detailPanel ) => {
     let mainpage = null
     if (template == "default"){
         mainpage = (
-            <Container component="main" maxWidth="lg" align="center"> 
+            <Container component="main" maxWidth="lg" > 
                 <CssBaseline />
         
                 <Grid container spacing={3}>
-                <Grid item xs={12}>
-                    {titlePanel}
-                </Grid>
-                <Grid item xs={12}>
-                    {generalPanel}
-                </Grid>
-                <Grid item xs={12} >
-                    {detailPanel}
-                </Grid>
+                    <Grid item xs={12}>
+                        {titlePanel}
+                    </Grid>
+                    <Grid item xs={12}>
+                        {generalPanel}
+                    </Grid>
+                    <Grid item xs={12} >
+                        {detailPanel}
+                    </Grid>
                 </Grid>
             </Container>
           );
     }else if (template == "template1"){
         mainpage = (
-            <Container component="main" maxWidth="lg" align="center">
+            <Container component="main" maxWidth="lg" >
                 <CssBaseline />
 
                 <Grid container spacing={3}>
                     <Grid item xs={12}>
-                    {titlePanel}
+                        {titlePanel}
                     </Grid>
                     <Grid item xs={12}>
                     <Button>
@@ -99,7 +97,7 @@ const buildMobileView = (template, titlePanel, generalPanel, detailPanel, ) => {
                     </Button>
                     </Grid>
                     <Grid item xs={12}  >
-                    {detailPanel}
+                        {detailPanel}
                     </Grid>
                 </Grid>
             </Container>

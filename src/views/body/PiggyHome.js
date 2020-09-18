@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import clsx from 'clsx';
-// import Store from './../../js/store'
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -36,12 +35,13 @@ import * as ACTIONTYPE from "../../js/constants/action-type"
 import * as mainListItems from '../drawer/PiggylistItems'
 import Dashboard from './PiggyDashboard'
 import GifForm from './PiggyGIFSelectionForm'
-
+import * as IMAGES from './../../js/pictures/PiggyClass'
 
 
 
 function Home(props) {
   const classes = useStyles();
+
   const [open, setOpen] = React.useState(false);
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -49,6 +49,14 @@ function Home(props) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const getTitleHeadName = ()=>{
+    if(props.user && props.user.name){
+      return ("Hi "+ props.user.name)
+    }else{
+      return props.app_name
+    }
+  }
 
   const loadingpage = (
     <div className={classes.root}>
@@ -58,6 +66,7 @@ function Home(props) {
 
         <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
           <Toolbar className={classes.toolbar}>
+            <Grid container direction="row" justify="space-between" alignItems="center">
             <IconButton
               edge="start"
               color="inherit"
@@ -67,7 +76,8 @@ function Home(props) {
             >
               <MenuIcon />
             </IconButton>
-            
+            <img src={IMAGES.LOGO} className={classes.small_logo}  />
+            </Grid>
           </Toolbar>
         </AppBar>
 
@@ -94,16 +104,18 @@ function Home(props) {
 
         <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
           <Toolbar className={classes.toolbar}>
-            <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerOpen}
-              className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-            >
-              <MenuIcon />
-            </IconButton>
-            
+            <Grid container direction="row" justify="space-between" alignItems="center">
+              <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="open drawer"
+                onClick={handleDrawerOpen}
+                className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+              >
+                <MenuIcon />
+              </IconButton>
+              <img src={IMAGES.LOGO} className={classes.small_logo}  />
+            </Grid>
           </Toolbar>
         </AppBar>
 
@@ -122,13 +134,7 @@ function Home(props) {
     </div>
   )
 
-  const getTitleHeadName = ()=>{
-    if(props.user && props.user.name){
-      return ("Hi "+ props.user.name)
-    }else{
-      return props.app_name
-    }
-  }
+  
 
   const page  =  (
     <div className={classes.root}>
@@ -138,7 +144,9 @@ function Home(props) {
 
         <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
           <Toolbar className={classes.toolbar}>
+            <Grid container direction="row" justify="space-between" alignItems="center">
 
+            
             <IconButton
               edge="start"
               color="inherit"
@@ -158,10 +166,11 @@ function Home(props) {
               >
               <MenuOpenSharpIcon />
             </IconButton>
+
+            <img src={IMAGES.LOGO} className={classes.small_logo}  />
+            </Grid>
           </Toolbar>
         </AppBar>
-
-
 
         <Drawer
           variant="permanent"
@@ -170,9 +179,6 @@ function Home(props) {
           }}
           open={open}
         >
-          
-          
-            
             <List>
               <ListItem >
                 <ListItemIcon>
@@ -183,13 +189,8 @@ function Home(props) {
                 </ListItemText>
               </ListItem>  
             </List>
-          
-            
-          
           <Divider />
-          
             <List>{mainListItems.mainfunction(props)}</List>
-            {/* <List>{mainListItems}</List> */}
           <Divider />
         </Drawer>
 
@@ -199,13 +200,13 @@ function Home(props) {
         <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-            <Grid container >
+            <Grid container alignItems="center" >
                 <Switch>
                     <Route exact path={URL_LIST.URL_USER_HOME}  component = {Dashboard} />
                     <Route exact path={URL_LIST.URL_GIF_SELECT}  component = {GifForm} />
                 </Switch>
             </Grid>
-            <Copyright />
+            <Copyright className={classes.footer}/>
           </Container>
         </main>
 

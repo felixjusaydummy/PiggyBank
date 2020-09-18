@@ -11,9 +11,10 @@ const tempData = {
         name : "Chloe",
         birthday : "januray 3, 2010",
         avatar: "https://media.giphy.com/media/12fegBdilUKCRy/giphy.gif",
+        contactNo: "09100000001",
 
-        savings: 100000,
-        coins: 1234,
+        savings: 100.00,
+        coins: 24,
         transaction: [
             {
                 date: "january 4, 2020",

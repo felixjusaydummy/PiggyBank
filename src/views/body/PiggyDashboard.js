@@ -15,6 +15,8 @@ import * as ACTIONS from '../../js/constants/action-type';
 import { getView } from './ViewIdentifier'
 import * as IMAGES from './../../js/pictures/PiggyClass'
 
+import ImgMediaCard from './PiggyLearningBoards'
+
 
 
 
@@ -31,7 +33,7 @@ function buildDefaultControlsView(props, classes){
             </Button>
           </Grid>      
           <Grid item className={classes.controlButtons} >
-            <Button >
+            <Button onClick={props.gotToLearningBoard}>
               <img src={IMAGES.GRAPH} alt="Logo" className={classes.avatar}/>
             </Button>
           </Grid>    
@@ -181,6 +183,7 @@ function buildPersonInfoView(props){
         <Typography component="p" >Name: {props.user.name}</Typography>
         <Typography component="p" >Birthday: {props.user.birthday}</Typography>
         <Typography component="p" >Email: {props.user.email}</Typography>
+        <Typography component="p" >Contact No: {props.user.contactNo}</Typography>
         <Button 
           // type="button"
           // variant="contained"
@@ -213,6 +216,18 @@ function buildPersonInfoView(props){
 }
 
 
+function buildLearningBoard(props){
+  return (
+    <Grid>
+      <Grid container direction="row" >
+          <ImgMediaCard/>
+      </Grid>
+      <Button color="primary" onClick={props.goToMain}>Back</Button>
+    </Grid>
+  )
+}
+
+
 
 
 function Dashboard(props){
@@ -236,13 +251,33 @@ function Dashboard(props){
   } else if(props.action_type == ACTIONS.PIGGY_DASHBOARD_VIEW_PERSONINFO){
     detailPanel = buildPersonInfoView(props)
     template = "template1"
-  } else{
+  } else if(props.action_type == ACTIONS.PIGGY_DASHBOARD_VIEW_LEARNINGBOARDS){
+    detailPanel = buildLearningBoard(props)
+    template = "template1"
+  } 
+  else{
     detailPanel = buildDefaultControlsView(props, classes)
     template = "default"
   }
   
 
-  const titlePanel = (<Paper p={2} className={classes.avatar_name}>Hi {props.user.name}!</Paper>)
+  const titlePanel = (<Paper p={2} >
+    <Grid
+      container
+      direction="row"
+      justify="space-between"
+      alignItems="center"
+      
+    >
+      <Typography className={classes.avatar_name}>
+        Hi {props.user.name}!
+      </Typography>  
+      <Typography className={classes.avatar_name}>
+        Php <NumberFormat value={props.user.savings} displayType={'text'} thousandSeparator={true} />
+      </Typography>  
+    </Grid>
+    </Paper>
+    )
   const generalPanel = (<Button onClick={props.gotToPersonInfo}>
     <img src={props.user.avatar} alt="Logo" className={classes.img}/>
     
@@ -295,6 +330,11 @@ function mapDispatchToProps(dispatch){
     gotToViewChangeAvatar: ()=>{
       const action = {type: ACTIONS.VIEW_CHANGE_AVATAR};
       dispatch(action);
+    },
+
+    gotToLearningBoard: ()=>{
+      const action = {type: ACTIONS.PIGGY_DASHBOARD_VIEW_LEARNINGBOARDS};
+      dispatch(action);
     }
 
   }
@@ -303,56 +343,3 @@ function mapDispatchToProps(dispatch){
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
 
-
-
-
-/////
-
-
-
-// let mainpage = null
-
-
-// if (template == "default"){
-//   mainpage = (
-//     <Container component="main" maxWidth="lg">
-//       <CssBaseline />
-
-//       <Grid container spacing={3}>
-//         <Grid item xs={12}>
-//           <Paper p={2} className={classes.avatar_name}>Hi {props.user.name}!</Paper>
-//         </Grid>
-//         <Grid item xs={6}>
-//           <Button onClick={props.gotToPersonInfo}>
-//             <img src={IMAGES.PROFILE} alt="Logo" className={classes.img}/>
-//           </Button>
-//         </Grid>
-//         <Grid item xs={6}>
-//           {detailPanel}
-//         </Grid>
-//       </Grid>
-//     </Container>
-//     );
-// }else if (template == "template1"){
-//   mainpage = (
-//     <Container component="main" maxWidth="lg">
-//       <CssBaseline />
-
-//       <Grid container spacing={3}>
-//         <Grid item xs={12}>
-//           <Paper p={2} className={classes.avatar_name}>Hi {props.user.name}!</Paper>
-//         </Grid>
-//         <Grid item xs={3}>
-//           <Button>
-//             <img src={IMAGES.PROFILE} alt="Logo" className={classes.img}/>
-//           </Button>
-//         </Grid>
-//         <Grid item xs={9}>
-//           {detailPanel}
-//         </Grid>
-//       </Grid>
-//     </Container>
-//     );
-// }
-
-// return mainpage

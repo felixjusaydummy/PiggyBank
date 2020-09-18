@@ -1,3 +1,4 @@
+import * as IMAGES from './../js/pictures/PiggyClass'
 import { makeStyles } from '@material-ui/core/styles';
 
 export const drawerWidth = 240;
@@ -16,7 +17,7 @@ export const useStyles = makeStyles(theme => ({
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
-    backgroundColor: bgColors.Green
+    backgroundColor: bgColors.Yellow
   },
   toolbarIconHead: {
     display: 'flex',
@@ -49,7 +50,7 @@ export const useStyles = makeStyles(theme => ({
   },
   menuButton: {
     marginRight: 36,
-    backgroundColor: bgColors.Green
+    backgroundColor: bgColors.Yellow
   },
   menuButtonHidden: {
     display: 'none',
@@ -96,4 +97,11 @@ export const useStyles = makeStyles(theme => ({
   fixedHeight: {
     height: 240,
   },
+  small_logo: {
+    width: '60x',
+    height: '60px',
+  },
+  footer: {
+    height: '2600px',
+  }
 }));

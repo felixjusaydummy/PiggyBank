@@ -104,7 +104,22 @@ export const initialState = {
     current_inbox : null,
     current_accountdetails : null,
     action_type: null,
-    gif: []
+    gif: [],
+    learnings: [
+        {
+            id: "VVWDXihmGlQ",
+            title: "Test",
+            description: "Test....",
+            link: "https://www.youtube.com/watch?v=VVWDXihmGlQ"
+        },
+        {
+            id: "SedDd73UD0o",
+            title: "Test2",
+            description: "Test....2",
+            link: "https://www.youtube.com/watch?v=SedDd73UD0o"
+        }
+        
+    ]
 }
 
 

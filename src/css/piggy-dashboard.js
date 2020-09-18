@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-import KOALALOGO from './../js/pictures/koala.png'
+import * as IMAGES from './../js/pictures/PiggyClass'
 
 var bgColors = { 
   "Default": "#81b71a",
@@ -45,9 +45,8 @@ export const useStyles = makeStyles(theme => ({
     // backgroundColor: theme.palette.secondary.main,
     // backgroundColor: bgColors.Green,
     // flex: 1,
-    width: '130px',
+    width: '100px',
     height: '100px',
-    // backgroundImage: url('')
   },
 
   avatar_name: {

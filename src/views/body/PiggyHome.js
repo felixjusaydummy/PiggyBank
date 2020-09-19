@@ -34,7 +34,9 @@ import * as URL_LIST from "../../js/constants/url-list"
 import * as ACTIONTYPE from "../../js/constants/action-type"
 import * as mainListItems from '../drawer/PiggylistItems'
 import Dashboard from './PiggyDashboard'
-import GifForm from './PiggyGIFSelectionForm'
+
+// import GifForm from '../../../PiggyGIFSelectionForm'
+
 import * as IMAGES from './../../js/pictures/PiggyClass'
 
 
@@ -203,7 +205,7 @@ function Home(props) {
             <Grid container alignItems="center" >
                 <Switch>
                     <Route exact path={URL_LIST.URL_USER_HOME}  component = {Dashboard} />
-                    <Route exact path={URL_LIST.URL_GIF_SELECT}  component = {GifForm} />
+                    {/* <Route exact path={URL_LIST.URL_GIF_SELECT}  component = {GifForm} /> */}
                 </Switch>
             </Grid>
             <Copyright className={classes.footer}/>

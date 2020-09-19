@@ -97,6 +97,11 @@ export const useStyles = makeStyles(theme => ({
     },
   },
 
+  imgStore: {
+    width: '50%',
+    height: '50%',
+  },
+
 
   controlButtons: {
     // marginRight:40,

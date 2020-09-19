@@ -19,29 +19,32 @@ const Mobile = ({ children }) => {
 //   return isNotMobile ? children : null
 // }
  
-const buildDesktopView = (template, titlePanel, generalPanel, detailPanel ) => {
+const buildDesktopView = (template, titlePanel, generalPanel, detailPanel, footerPanel ) => {
     let mainpage = null
     if (template == "default"){
         mainpage = (
-            <Container component="main" maxWidth="lg">
+            <Container component="main" maxWidth="md">
                 <CssBaseline />
         
                 <Grid container spacing={3}>
-                <Grid item xs={12}>
-                    {titlePanel}
-                </Grid>
-                <Grid item xs={6}>
-                    {generalPanel}
-                </Grid>
-                <Grid item xs={6}>
-                    {detailPanel}
-                </Grid>
+                    <Grid item xs={12}>
+                        {titlePanel}
+                    </Grid>
+                    <Grid item xs={6}>
+                        {generalPanel}
+                    </Grid>
+                    <Grid item xs={6}>
+                        {detailPanel}
+                    </Grid>
+                    <Grid item xs={12}>
+                        {footerPanel}
+                    </Grid>
                 </Grid>
             </Container>
           );
     }else if (template == "template1"){
         mainpage = (
-            <Container component="main" maxWidth="lg">
+            <Container component="main" maxWidth="md">
                 <CssBaseline />
 
                 <Grid container spacing={3} >
@@ -54,6 +57,9 @@ const buildDesktopView = (template, titlePanel, generalPanel, detailPanel ) => {
                     <Grid item xs={9}>
                         {detailPanel}
                     </Grid>
+                    <Grid item xs={12}>
+                        {footerPanel}
+                    </Grid>
                 </Grid>
             </Container>
         );
@@ -62,7 +68,7 @@ const buildDesktopView = (template, titlePanel, generalPanel, detailPanel ) => {
 }
 
 
-const buildMobileView = (template, titlePanel, generalPanel, detailPanel ) => {
+const buildMobileView = (template, titlePanel, generalPanel, detailPanel, footerPanel ) => {
     let mainpage = null
     if (template == "default"){
         mainpage = (
@@ -78,6 +84,9 @@ const buildMobileView = (template, titlePanel, generalPanel, detailPanel ) => {
                     </Grid>
                     <Grid item xs={12} >
                         {detailPanel}
+                    </Grid>
+                    <Grid item xs={12}>
+                        {footerPanel}
                     </Grid>
                 </Grid>
             </Container>
@@ -99,6 +108,9 @@ const buildMobileView = (template, titlePanel, generalPanel, detailPanel ) => {
                     <Grid item xs={12}  >
                         {detailPanel}
                     </Grid>
+                    <Grid item xs={12}>
+                        {footerPanel}
+                    </Grid>
                 </Grid>
             </Container>
         );
@@ -106,12 +118,10 @@ const buildMobileView = (template, titlePanel, generalPanel, detailPanel ) => {
     return mainpage
 }
 
-export const getView = (template, titlePanel, generalPanel, detailPanel) => (
+export const getView = (template, titlePanel, generalPanel, detailPanel, footerPanel) => (
   <div>
-    <Desktop>{buildDesktopView(template, titlePanel, generalPanel, detailPanel)}</Desktop>
-    <Tablet>{buildDesktopView(template, titlePanel, generalPanel, detailPanel)}</Tablet>
-    <Mobile>{buildMobileView(template, titlePanel, generalPanel, detailPanel)}</Mobile>
+    <Desktop>{buildDesktopView(template, titlePanel, generalPanel, detailPanel, footerPanel)}</Desktop>
+    <Tablet>{buildDesktopView(template, titlePanel, generalPanel, detailPanel, footerPanel)}</Tablet>
+    <Mobile>{buildMobileView(template, titlePanel, generalPanel, detailPanel, footerPanel)}</Mobile>
   </div>
 )
- 
-// export default getView

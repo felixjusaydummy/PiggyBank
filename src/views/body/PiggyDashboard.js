@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import { Paper, Table, TableBody, TableRow, TableCell, Typography, TableHead, Avatar } from '@material-ui/core';
+import { Paper, Table, TableBody, TableRow, TableCell, Typography, TableHead, Avatar, List, ListItem, ListItemAvatar, ListItemText, Divider } from '@material-ui/core';
 
 import { useStyles } from "../../css/piggy-dashboard";
 import { useStylesStatus } from "../../css/piggy-dashboard-coininfo";
@@ -16,6 +16,7 @@ import { getView } from './ViewIdentifier'
 import * as IMAGES from './../../js/pictures/PiggyClass'
 
 import ImgMediaCard from './PiggyLearningBoards'
+import NotificationPanel from './PiggyNotification'
 
 
 
@@ -165,13 +166,12 @@ function buildPlansView(props, plans){
 }
 
 
-function buildStoresView(props, stores){
+function buildStoresView(props, stores, classes){
   return (
     <div>
         {stores.map(elem=>(
-            <img key={uuid()} src={elem} className="img-responsive" />
+            <img key={uuid()} src={elem}  className={classes.imgStore} />
         ))} 
-        <Button onClick={props.goToMain}>Back</Button>
     </div>
   )
 }
@@ -184,12 +184,12 @@ function buildPersonInfoView(props){
         <Typography component="p" >Birthday: {props.user.birthday}</Typography>
         <Typography component="p" >Email: {props.user.email}</Typography>
         <Typography component="p" >Contact No: {props.user.contactNo}</Typography>
-        <Button 
+        {/* <Button 
           // type="button"
           // variant="contained"
           color="primary"
           onClick={props.gotToViewChangeAvatar}
-           > Change Avatar</Button>
+           > Change Avatar</Button> */}
     </div>
     <Typography component="p" >Benefactors</Typography>
     <Table size="small">
@@ -230,12 +230,16 @@ function buildLearningBoard(props){
 
 
 
+
+
 function Dashboard(props){
   const classes = useStyles();
   const classesStatus = useStylesStatus();
 
   let detailPanel = null;
   let template = "default"
+  let footerPanel = false
+
   if(props.action_type == ACTIONS.PIGGY_DASHBOARD_VIEW_COINS){
     detailPanel = buildCoinsView(props, classesStatus)
     template = "default"
@@ -246,7 +250,13 @@ function Dashboard(props){
     detailPanel = buildPlansView(props, props.user.plans)
     template = "template1"
   } else if(props.action_type == ACTIONS.PIGGY_DASHBOARD_VIEW_STORE){
-    detailPanel = buildStoresView(props, props.user.stores)
+    detailPanel = (
+      <Grid>
+        {buildStoresView(props, props.stores, classes)}
+        <Button onClick={props.goToMain}>Back</Button>
+      </Grid>
+    )
+    
     template = "default"
   } else if(props.action_type == ACTIONS.PIGGY_DASHBOARD_VIEW_PERSONINFO){
     detailPanel = buildPersonInfoView(props)
@@ -254,10 +264,10 @@ function Dashboard(props){
   } else if(props.action_type == ACTIONS.PIGGY_DASHBOARD_VIEW_LEARNINGBOARDS){
     detailPanel = buildLearningBoard(props)
     template = "template1"
-  } 
-  else{
+  } else{
     detailPanel = buildDefaultControlsView(props, classes)
     template = "default"
+    footerPanel = true
   }
   
 
@@ -280,13 +290,12 @@ function Dashboard(props){
     )
   const generalPanel = (<Button onClick={props.gotToPersonInfo}>
     <img src={props.user.avatar} alt="Logo" className={classes.img}/>
-    
-
   </Button>)
+
   
-
-
-  return getView(template, titlePanel, generalPanel, detailPanel)
+  footerPanel = (footerPanel)? NotificationPanel(props.user.notifications, classes): null
+  
+  return getView(template, titlePanel, generalPanel, detailPanel, footerPanel)
 }
 
 

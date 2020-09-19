@@ -19,35 +19,41 @@ const useStyles = makeStyles({
   },
 });
 
+
 function createPaper(classes, video){
     return (
-        <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          alt="Contemplative Reptile"
-          height="140"
-          image={"https://img.youtube.com/vi/VVWDXihmGlQ/0.jpg"}
-          title="Contemplative Reptile"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {video.title}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {video.description}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        {/* <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button> */}
-      </CardActions>
-    </Card>
+        <Grid item xs={12} key={uuid()}>
+            <Card className={classes.root} onClick={()=>{
+                window.location = video.link;
+            }
+            }>
+                <CardActionArea>
+                    <CardMedia
+                    component="img"
+                    alt="Contemplative Reptile"
+                    height="140"
+                    image={"https://img.youtube.com/vi/"+ video.id + "/0.jpg"}
+                    title="Contemplative Reptile"
+                    />
+                    <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                        {video.title}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        {video.description}
+                    </Typography>
+                    </CardContent>
+                </CardActionArea>
+                <CardActions>
+                    {/* <Button size="small" color="primary">
+                    Share
+                    </Button>
+                    <Button size="small" color="primary">
+                    Learn More
+                    </Button> */}
+                </CardActions>
+            </Card>
+        </Grid>
     )
 }
 
@@ -55,11 +61,12 @@ function createPaper(classes, video){
 
 function ImgMediaCard(props) {
   const classes = useStyles();
-//   const videos =  this.props.learnings.map( i => createPaper(classes, i))
+  const videos =  props.learnings.map( i => createPaper(classes, i))
 
   return (
-    <Grid container direction="row">
+    <Grid container direction="row" spacing={1}>
         {/* {videos} */}
+        {props.learnings.map( i => createPaper(classes, i))}
     </Grid>
     
   );

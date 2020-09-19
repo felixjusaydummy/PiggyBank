@@ -2,8 +2,6 @@ import * as ACTIONTYPE from "../../constants/action-type";
 import * as STATUSTYPE from "../../constants/status-type";  
 import * as GiphyManager from "../../actions-api/giphy-manager"
 
-
-
 export const SearchGIF = (action, dispatch)=>{
     action.login_status = STATUSTYPE.QUERY_LOADING;
     new Promise((resolve, reject)=>{
@@ -14,7 +12,6 @@ export const SearchGIF = (action, dispatch)=>{
             reject(err);
         }
     }).then(response=>{
-
         action = {
             type : ACTIONTYPE.PIGGY_GIPHY_SELECTION_RESOLVED,
             login_status : STATUSTYPE.QUERY_RESOLVED,
@@ -24,13 +21,9 @@ export const SearchGIF = (action, dispatch)=>{
                 return i.images.original.url
             })
         }
-        // console.log("resolved gif")
-        // console.log(response.data)
-        // console.log(action)
         dispatch(action);
     })
     .catch(error=>{
-        // console.log(JSON.stringify(error));
         action = {
             type : ACTIONTYPE.PIGGY_GIPHY_SELECTION_RESOLVED,
             login_status : STATUSTYPE.QUERY_ERROR,

@@ -1,7 +1,7 @@
 import React from 'react';
 import SignIn from './views/body/SignIn'
 import Home from './views/body/PiggyHome'
-import GifForm from './views/body/PiggyGIFSelectionForm'
+// import GifForm from '../PiggyGIFSelectionForm'
 
 import Store  from './js/store.js'
 import { Provider } from 'react-redux'
@@ -38,7 +38,7 @@ function Main(props) {
           <Switch>
             <Route exact path='/'  component = {SignIn}/>
             <SecretRoute path={URL_LIST.URL_USER_HOME}  component = {Home} />
-            <SecretRoute path={URL_LIST.URL_GIF_SELECT}  component = {GifForm} />
+            {/* <SecretRoute path={URL_LIST.URL_GIF_SELECT}  component = {GifForm} /> */}
           </Switch>
         </BrowserRouter>
       </Provider>

@@ -6,7 +6,7 @@ const tempdata = {
     data: {
         result : "success",
         data :{
-            name: "john"
+            name: "chloe"
         }
     }
 }

@@ -8,7 +8,8 @@ var bgColors = {
   "Green": "#7fad4e",
   "DarkGreen": "#5c8037",
   "Red": "#E9573F",
-  "Yellow": "#F6BB42",
+  "Yellow": "#DAA520",
+  "DarkYellow": "#F9A602",
   "White": "#FFFFFF",
 };
 
@@ -60,9 +61,9 @@ export const useStyles = makeStyles(theme => ({
   // },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    backgroundColor: bgColors.Green,
+    backgroundColor: bgColors.Yellow,
     "&:hover": {
-      background: bgColors.DarkGreen
+      background: bgColors.DarkYellow
     },
   },
 
@@ -75,16 +76,16 @@ export const useStyles = makeStyles(theme => ({
   imgtips: {
     width: '100%',
     height: 100,
-    backgroundColor: bgColors.Green,
+    backgroundColor: bgColors.Yellow,
     "&:hover": {
-      background: bgColors.DarkGreen
+      background: bgColors.DarkYellow
     },
   },
   submit_spacing: {
     margin: theme.spacing(0,2,0, 0),
-    backgroundColor: bgColors.Green,
+    backgroundColor: bgColors.Yellow,
     "&:hover": {
-      background: bgColors.DarkGreen
+      background: bgColors.DarkYellow
     },
   },
 }));

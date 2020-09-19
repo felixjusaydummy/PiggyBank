@@ -10,7 +10,6 @@ import Container from '@material-ui/core/Container';
 import {connect} from 'react-redux'
 
 import { useStyles } from "../../css/dashboard.js"
-// import  useStyles  from "../../css/dashboard.js"
 import { VIEW_REDIRECT_HOME } from "../../js/constants/action-type";
 import Copyright from "../foot/Copyright";
 // import LOGO_TIP3 from './../../js/pictures/tip3.png'
@@ -120,8 +119,8 @@ function SignIn(props){
           {props.app_name}
         </Typography>
         <form className={classes.form} noValidate>
-          {iUsername}
-          {iPassword}
+          {/* {iUsername}
+          {iPassword} */}
           {resButton}          
         </form>
       </div>

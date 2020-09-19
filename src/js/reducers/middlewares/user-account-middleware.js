@@ -6,8 +6,8 @@ const tempData = {
     data: {
     status: "success",
     data: {
-        email : "john",
-        password: "john",
+        email : "chloe",
+        password: "chloe",
         name : "Chloe",
         birthday : "januray 3, 2010",
         avatar: "",

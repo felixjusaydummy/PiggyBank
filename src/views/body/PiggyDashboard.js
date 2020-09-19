@@ -24,41 +24,41 @@ import NotificationPanel from './PiggyNotification'
 
 function buildDefaultControlsView(props, classes){
   return (
-    <Grid container justify="center" spacing={5}>
-      <Grid item sm={3} >
-        <Grid container  direction="column"  alignItems="center" spacing={1}>
-          <Grid item className={classes.controlButtons} >
+    <Grid container justify="flex-start" spacing={2}>
+      <Grid item  >
+        <Grid container  direction="column"  alignItems="center" spacing={2}>
+          <Grid item  >
             
-            <Button onClick={props.goToCoins} >
+            <Button onClick={props.goToCoins} className={classes.controlButtons} >
               <img src={IMAGES.COIN} alt="Logo" className={classes.avatar}/>
             </Button>
           </Grid>      
-          <Grid item className={classes.controlButtons} >
-            <Button onClick={props.gotToLearningBoard}>
+          <Grid item >
+            <Button onClick={props.gotToLearningBoard} className={classes.controlButtons}>
               <img src={IMAGES.GRAPH} alt="Logo" className={classes.avatar}/>
             </Button>
           </Grid>    
-          <Grid item className={classes.controlButtons} >
-            <Button onClick={props.gotToStore} >
+          <Grid item >
+            <Button onClick={props.gotToStore} className={classes.controlButtons}>
               <img src={IMAGES.BAG} alt="Logo" className={classes.avatar}/>
             </Button>
           </Grid>      
         </Grid>
       </Grid>
-      <Grid item sm={3} >
-        <Grid container  direction="column"  alignItems="center" spacing={1}>
-          <Grid item className={classes.controlButtons} >
-            <Button onClick={props.gotToGift}  >
+      <Grid item  >
+        <Grid container  direction="column"  alignItems="center" spacing={2}>
+          <Grid item >
+            <Button onClick={props.gotToGift} className={classes.controlButtons} >
               <img src={IMAGES.GIFT} alt="Logo" className={classes.avatar}/>
             </Button>
           </Grid>      
-          <Grid item className={classes.controlButtons} >
-            <Button >
+          <Grid item >
+            <Button onClick={props.gotToBall} className={classes.controlButtons} >
               <img src={IMAGES.GAMES} alt="Logo" className={classes.avatar}/>
             </Button>
           </Grid>    
-          <Grid item className={classes.controlButtons} >
-            <Button onClick={props.gotToPlan}>
+          <Grid item >
+            <Button onClick={props.gotToPlan} className={classes.controlButtons}>
               <img src={IMAGES.PROGRESS} alt="Logo" className={classes.avatar}/>
             </Button>
           </Grid>      
@@ -228,6 +228,21 @@ function buildLearningBoard(props){
 }
 
 
+function buildBallView(props, avatars, classes){
+  return (
+    <div>
+        <Button key={uuid()} onClick={props.onSelectAvatar1}>
+          <img  src={IMAGES.PROFILE1}  className={classes.imgStore} />
+        </Button>
+        <Button key={uuid()} onClick={props.onSelectAvatar2}>
+          <img  src={IMAGES.PROFILE2}  className={classes.imgStore} />
+        </Button>
+        
+    </div>
+  )
+}
+
+
 
 
 
@@ -264,6 +279,15 @@ function Dashboard(props){
   } else if(props.action_type == ACTIONS.PIGGY_DASHBOARD_VIEW_LEARNINGBOARDS){
     detailPanel = buildLearningBoard(props)
     template = "template1"
+  } else if(props.action_type == ACTIONS.PIGGY_DASHBOARD_VIEW_BALL){
+    detailPanel = (
+      <Grid>
+        {buildBallView(props, null, classes)}
+        <Button onClick={props.goToMain}>Back</Button>
+      </Grid>
+    )
+    
+    template = "default"
   } else{
     detailPanel = buildDefaultControlsView(props, classes)
     template = "default"
@@ -288,13 +312,26 @@ function Dashboard(props){
     </Grid>
     </Paper>
     )
-  const generalPanel = (<Button onClick={props.gotToPersonInfo}>
-    <img src={props.user.avatar} alt="Logo" className={classes.img}/>
-  </Button>)
 
   
-  footerPanel = (footerPanel)? NotificationPanel(props.user.notifications, classes): null
+  let generalPanel = (<Button onClick={props.gotToPersonInfo} className={classes.controlButtons}>
+    <img src={IMAGES.PROFILE} alt="Logo" className={classes.img}/>
+  </Button>)
+  if (props.current_avatar) {
+    console.log("change avatar: "+ props.current_avatar)
+    if(props.current_avatar === IMAGES.PROFILE1){
+      generalPanel = (<Button onClick={props.gotToPersonInfo} className={classes.controlButtons}>
+        <img src={IMAGES.PROFILE1} alt="Logo" className={classes.img}/>
+      </Button>)
+    }else{
+      generalPanel = (<Button onClick={props.gotToPersonInfo} className={classes.controlButtons}>
+        <img src={IMAGES.PROFILE2} alt="Logo" className={classes.img}/>
+      </Button>)
+    }
+    
+  }
   
+  footerPanel = (footerPanel)? NotificationPanel(props.user.notifications, classes): null
   return getView(template, titlePanel, generalPanel, detailPanel, footerPanel)
 }
 
@@ -344,7 +381,32 @@ function mapDispatchToProps(dispatch){
     gotToLearningBoard: ()=>{
       const action = {type: ACTIONS.PIGGY_DASHBOARD_VIEW_LEARNINGBOARDS};
       dispatch(action);
-    }
+    },
+
+    gotToBall: ()=>{
+      const action = {type: ACTIONS.PIGGY_DASHBOARD_VIEW_BALL};
+      dispatch(action);
+    },
+
+    onSelectAvatar1: ()=>{
+      const action = {
+        type: ACTIONS.PIGGY_GIPHY_SELECTION_SELECTED,
+        payload: {
+          selected: IMAGES.PROFILE1,
+        }
+      };
+      dispatch(action);
+    },
+
+    onSelectAvatar2: ()=>{
+      const action = {
+        type: ACTIONS.PIGGY_GIPHY_SELECTION_SELECTED,
+        payload: {
+          selected: IMAGES.PROFILE2,
+        }
+      };
+      dispatch(action);
+    },
 
   }
 }

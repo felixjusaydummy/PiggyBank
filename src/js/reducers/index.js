@@ -81,11 +81,7 @@ function rootReducer(state = getInitialState(), action){
         state = Object.assign({}, state, {gif:  action.gif})  
     }
     else if (action.type === ACTIONTYPE.PIGGY_GIPHY_SELECTION_SELECTED){
-        let state1 = Object.assign({}, state) 
-        state1.user.avatar = action.payload.selected
-        state = Object.assign({}, state1) 
-        console.log("change avatar: "+ action.payload.selected)
-
+        state = Object.assign({}, state, {current_avatar:  action.payload.selected})  
     }else if (action.type === ACTIONTYPE.VIEW_CHANGE_AVATAR){
         RedirectManager.redirectToChangeAvatar();
     }

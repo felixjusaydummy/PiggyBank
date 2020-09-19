@@ -20,7 +20,9 @@ export const useStyles = makeStyles(theme => ({
   },
 
   paper: {
-    marginTop: theme.spacing(2),
+    margin: theme.spacing(5,5,5,5),
+    paddingRight: 5,
+    paddingLeft: 5,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -43,7 +45,10 @@ export const useStyles = makeStyles(theme => ({
   avatar: {
     // margin: theme.spacing(1),
     // backgroundColor: theme.palette.secondary.main,
-    // backgroundColor: bgColors.Green,
+    backgroundColor: bgColors.Green,
+    borderColor: bgColors.Red,
+    borderRadius: 1,
+    borderWidth: 50,
     // flex: 1,
     width: '100px',
     height: '100px',
@@ -104,9 +109,8 @@ export const useStyles = makeStyles(theme => ({
 
 
   controlButtons: {
-    // marginRight:40,
-    // marginLeft:40,
-    // marginTop:10,
+    margin: theme.spacing(0,0,0, 0),
+    border: '1px solid currentColor',
     // paddingTop:20,
     // paddingBottom:20,
     // // backgroundColor:'#68a0cf',

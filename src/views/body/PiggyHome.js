@@ -200,16 +200,16 @@ function Home(props) {
 
 
         <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
-            <Grid container alignItems="center" >
-                <Switch>
-                    <Route exact path={URL_LIST.URL_USER_HOME}  component = {Dashboard} />
-                    {/* <Route exact path={URL_LIST.URL_GIF_SELECT}  component = {GifForm} /> */}
-                </Switch>
-            </Grid>
-            <Copyright className={classes.footer}/>
-          </Container>
+          <div className={classes.appBarSpacer} />
+          <Container maxWidth="md" className={classes.container}>
+              <Grid container >
+                  <Switch>
+                      <Route exact path={URL_LIST.URL_USER_HOME}  component = {Dashboard} />
+                      {/* <Route exact path={URL_LIST.URL_GIF_SELECT}  component = {GifForm} /> */}
+                  </Switch>
+              </Grid>
+              <Copyright className={classes.footer}/>
+            </Container>
         </main>
 
         

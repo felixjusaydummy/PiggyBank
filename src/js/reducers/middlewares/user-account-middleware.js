@@ -10,7 +10,7 @@ const tempData = {
         password: "john",
         name : "Chloe",
         birthday : "januray 3, 2010",
-        avatar: "https://media.giphy.com/media/12fegBdilUKCRy/giphy.gif",
+        avatar: "",
         contactNo: "09100000001",
 
         savings: 125.00,

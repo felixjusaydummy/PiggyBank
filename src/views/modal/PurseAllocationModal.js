@@ -96,7 +96,7 @@ function PurseAllocationModal(props, ref) {
   const getMessageDescription = ()=>{
     if(!isError){
       if(addAllocation){
-        return "Please enter your pocket allocation here";
+        return "Please enter Account information";
       }else{
         return "Add Additional Amount";
       }
@@ -107,7 +107,7 @@ function PurseAllocationModal(props, ref) {
 
   const getSubmitButtonText = ()=>{
     if(addAllocation === TASK_POCKET_ADD_NEW){
-      return "Create";
+      return "Transfer";
     }else if (addAllocation === TASK_POCKET_ADD_AMOUNT){
       return "Add Cash";
     }else{
@@ -141,7 +141,7 @@ function PurseAllocationModal(props, ref) {
             autoFocus 
             margin="dense" 
             name="iDescriptionHolder" 
-            label="Description" 
+            label="Account" 
             type="text"
             fullWidth 
             value = {currentAllocation.description}

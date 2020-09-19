@@ -1,6 +1,9 @@
 import LOGO_PIGGYCOIN from './piggy_logo.png'
 
-import LOGO_PROFILE from './piggy_girl.jpg'
+import LOGO_PROFILE from './piggy_girl2.png'
+
+import LOGO_PROFILE1 from './piggy_girl.jpg'
+import LOGO_PROFILE2 from './piggy_girl3.png'
 
 import LOGO_COIN from './piggy_coin.jpg'
 // import LOGO_COIN from './d7b83f7d327f0ea17ca9189c76560806.gif'
@@ -25,6 +28,8 @@ import LOGO_PROGRESS from './piggy_progress.jpg'
 
 export const LOGO = LOGO_PIGGYCOIN
 export const PROFILE = LOGO_PROFILE 
+export const PROFILE1 = LOGO_PROFILE1 
+export const PROFILE2 = LOGO_PROFILE2 
 export const COIN  = LOGO_COIN 
 export const GIFT  = LOGO_GIFT 
 export const GRAPH  = LOGO_GRAPH 

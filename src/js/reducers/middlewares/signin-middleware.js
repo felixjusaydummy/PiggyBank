@@ -2,23 +2,23 @@ import * as ACTIONTYPE from "../../constants/action-type";
 import * as STATUSTYPE from "../../constants/status-type";  
 import * as LoginManager from "../../actions-api/login-manager"
 
-const tempdata = {
-    data: {
-        result : "success",
-        data :{
-            name: "chloe"
-        }
-    }
-}
+// const tempdata = {
+//     data: {
+//         result : "success",
+//         data :{
+//             name: "chloe"
+//         }
+//     }
+// }
 
 export const SignIn = (action, dispatch)=>{
     action.login_status = STATUSTYPE.QUERY_LOADING;
     new Promise((resolve, reject)=>{
         try{
-            // const result = LoginManager.loginAsync(action.payload);
-            // resolve(result);
+            const result = LoginManager.loginAsync(action.payload);
+            resolve(result);
 
-            resolve(tempdata)
+            // resolve(tempdata)
         }catch(err){
             reject(err);
         }

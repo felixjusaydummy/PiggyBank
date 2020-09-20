@@ -143,8 +143,8 @@ function mapDispatchToProps(dispatch){
           const action = {
             type: VIEW_REDIRECT_HOME,
             payload: {
-              username: iUsername,
-              password: iPassword
+              username: "chloe",
+              password: "chloe"
             }
           };
           dispatch(action);

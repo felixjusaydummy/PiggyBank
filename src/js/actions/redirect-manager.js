@@ -18,6 +18,6 @@ export function redirectToLogin(){
 }
 
 export function redirectToChangeAvatar(){
-    window.location = URLLIST.URL_GIF_SELECT;
+    // window.location = URLLIST.URL_GIF_SELECT;
 }
 

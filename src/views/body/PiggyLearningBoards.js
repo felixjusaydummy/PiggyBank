@@ -61,8 +61,6 @@ function createPaper(classes, video){
 
 function ImgMediaCard(props) {
   const classes = useStyles();
-  const videos =  props.learnings.map( i => createPaper(classes, i))
-
   return (
     <Grid container direction="row" spacing={1}>
         {/* {videos} */}

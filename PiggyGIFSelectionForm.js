@@ -3,14 +3,14 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import * as STATUSTYPE from "../../js/constants/status-type";
+import * as STATUSTYPE from "./src/js/constants/status-type";
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import {connect} from 'react-redux'
 
-import { useStyles } from "../../css/dashboard.js"
-import * as ACTIONTYPE from "../../js/constants/action-type";
+import { useStyles } from "./src/css/dashboard.js"
+import * as ACTIONTYPE from "./src/js/constants/action-type";
 import { Grid } from '@material-ui/core';
 import uuid from 'react-uuid'
  

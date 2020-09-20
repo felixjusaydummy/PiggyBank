@@ -15,7 +15,7 @@ const tempData = {
 
         savings: 125.00,
         coins: 24,
-        transaction: [
+        transaction_archive: [
             {
                 date: "january 4, 2020",
                 type: "cash-in",
@@ -93,11 +93,11 @@ export const GetUserAccount = (action, dispatch)=>{
 
     new Promise((resolve, reject)=>{
         try{
-            // const result = AccountManager.getAccountDetails(action.authorization);
-            // resolve(result);
+            const result = AccountManager.getAccountDetails(action.authorization);
+            resolve(result);
 
             // temporary will not use rest api for the mean time
-            resolve(tempData)
+            // resolve(tempData)
         }catch(err){
             reject(err);
         }

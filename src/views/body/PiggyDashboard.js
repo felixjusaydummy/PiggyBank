@@ -259,7 +259,7 @@ function Dashboard(props){
     detailPanel = buildCoinsView(props, classesStatus)
     template = "default"
   } else if(props.action_type == ACTIONS.PIGGY_DASHBOARD_VIEW_GIFT){
-    detailPanel = buildGiftView(props, props.user.transaction)
+    detailPanel = buildGiftView(props, props.user.transaction_archive)
     template = "template1"
   } else if(props.action_type == ACTIONS.PIGGY_DASHBOARD_VIEW_PLAN){
     detailPanel = buildPlansView(props, props.user.plans)
